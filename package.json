@@ -11,10 +11,10 @@
     "lib"
   ],
   "engines": {
-    "node": ">=24.1.0"
+    "node": ">=24.11.0"
   },
   "peerDependencies": {
-    "ws": "^8.0.0"
+    "ws": "^8.19.0"
   },
   "peerDependenciesMeta": {
     "ws": {
@@ -22,7 +22,10 @@
     }
   },
   "scripts": {
-    "test": "node --test test/**/*.test.mjs",
+    "test": "node --test test/*.test.mjs test/**/*.test.mjs",
     "example": "node bin/serve.mjs example -p 3000 -H"
+  },
+  "devDependencies": {
+    "ws": "*"
   }
 }

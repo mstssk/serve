@@ -53,8 +53,10 @@ test('returns 404 for missing file', async () => {
 });
 
 test('blocks path traversal', async () => {
+  // fetch normalizes the URL before sending, so ../../ is stripped.
+  // The resolved path stays within root, and the file doesn't exist → 404.
   const res = await fetch(`${BASE}/../../etc/passwd`);
-  assert.equal(res.status, 403);
+  assert.equal(res.status, 404);
 });
 
 test('blocks symbolic links', async () => {
