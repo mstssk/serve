@@ -22,8 +22,9 @@ before(async () => {
   await new Promise(resolve => server.once('listening', resolve));
 });
 
-after(() => {
-  server.close();
+after(async () => {
+  server.closeAllConnections();
+  await new Promise(resolve => server.close(resolve));
 });
 
 test('serves index.html at /', async () => {

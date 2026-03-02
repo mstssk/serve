@@ -21,8 +21,10 @@ before(async () => {
   await new Promise(resolve => server.once('listening', resolve));
 });
 
-after(() => {
-  server.close();
+after(async () => {
+  hotReloadPlugin._watcher?.close();
+  server.closeAllConnections();
+  await new Promise(resolve => server.close(resolve));
 });
 
 test('injects script before </body>', async () => {
