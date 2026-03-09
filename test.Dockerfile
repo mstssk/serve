@@ -9,8 +9,7 @@ ARG NODE_VERSION=22
 FROM node:${NODE_VERSION}-slim
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
 COPY bin/ ./bin/
 COPY lib/ ./lib/
 COPY test/ ./test/
-CMD ["npm", "test"]
+CMD ["npm", "cit"]
