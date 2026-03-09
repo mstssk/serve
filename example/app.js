@@ -3,7 +3,7 @@ const status = document.getElementById('status');
 
 function checkHotReload() {
   const injected = document.querySelector('script:not([src])');
-  if (injected && injected.textContent.includes('WebSocket')) {
+  if (injected && injected.textContent.includes('EventSource')) {
     status.textContent = 'Hot-reload: enabled — edit any file to reload';
     status.classList.add('connected');
   } else {

@@ -13,19 +13,8 @@
   "engines": {
     "node": ">=22.11.0"
   },
-  "peerDependencies": {
-    "ws": "^8.19.0"
-  },
-  "peerDependenciesMeta": {
-    "ws": {
-      "optional": true
-    }
-  },
   "scripts": {
     "test": "node --test test/*.test.mjs test/**/*.test.mjs",
     "example": "node bin/serve.mjs example -p 3000 -H"
-  },
-  "devDependencies": {
-    "ws": "*"
   }
 }

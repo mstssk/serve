@@ -3,18 +3,14 @@
 Minimal static file server for local development.
 
 - Zero config
-- No dependencies except [`ws`](https://github.com/websockets/ws) (only for hot-reload)
+- No dependencies
 - Plugin interface for extensibility
-- Requires Node.js >= 24.1.0
+- Requires Node.js >= 22.11.0
 
 ## Install
 
 ```bash
-# static file server only
 npm install -g @mstssk/serve
-
-# with hot-reload support
-npm install -g @mstssk/serve ws
 ```
 
 ## Usage
@@ -41,6 +37,7 @@ serve ./dist -p 8080 -H      # with hot-reload
 | Method | Description |
 |--------|-------------|
 | `setup({ server, root, port })` | Called once before the server starts listening. Can be async. |
+| `handleRequest(req, res)` | Handle a request. Return `true` if handled, `false` to fall through. |
 | `transformResponse(body, { mime, target })` | Transform response body, return new body |
 
 ### Example plugin
