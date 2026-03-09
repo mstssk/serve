@@ -10,5 +10,7 @@ FROM node:${NODE_VERSION}-slim
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
-COPY . .
+COPY bin/ ./bin/
+COPY lib/ ./lib/
+COPY test/ ./test/
 CMD ["npm", "test"]
