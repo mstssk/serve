@@ -16,7 +16,6 @@ npm install -g @mstssk/serve
 ## Usage
 
 ```bash
-serve                        # serve current directory on :3000
 serve ./dist                 # serve ./dist on :3000
 serve ./dist -p 8080         # serve ./dist on :8080
 serve ./dist -p 8080 -H      # with hot-reload
