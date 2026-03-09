@@ -10,6 +10,7 @@
     "bin",
     "lib"
   ],
+  "license": "MIT",
   "engines": {
     "node": ">=22.11.0"
   },
