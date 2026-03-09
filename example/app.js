@@ -1,14 +1,14 @@
 // hot-reload の接続状態を表示するデモ
-const status = document.getElementById('status');
+const statusEl = document.getElementById('status');
 
 function checkHotReload() {
   const injected = document.querySelector('script:not([src])');
   if (injected && injected.textContent.includes('EventSource')) {
-    status.textContent = 'Hot-reload: enabled — edit any file to reload';
-    status.classList.add('connected');
+    statusEl.textContent = 'Hot-reload: enabled — edit any file to reload';
+    statusEl.classList.add('connected');
   } else {
-    status.textContent = 'Hot-reload: disabled — restart with -H flag to enable';
+    statusEl.textContent = 'Hot-reload: disabled — restart with -H flag to enable';
   }
 }
 
-checkHotReload();
+document.addEventListener('DOMContentLoaded', checkHotReload);
