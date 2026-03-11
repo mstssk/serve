@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "bin": {
-    "serve": "./bin/serve.mjs"
+    "serve": "bin/serve.mjs"
   },
   "files": [
     "bin",
