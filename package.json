@@ -2,6 +2,7 @@
   "name": "@mstssk/serve",
   "version": "0.0.1",
   "description": "Minimal static file server for local development",
+  "license": "MIT",
   "type": "module",
   "bin": {
     "serve": "./bin/serve.mjs"
@@ -10,12 +11,11 @@
     "bin",
     "lib"
   ],
-  "license": "MIT",
+  "scripts": {
+    "example": "node bin/serve.mjs example -p 3000 -H",
+    "test": "node --test test/*.test.mjs test/**/*.test.mjs"
+  },
   "engines": {
     "node": ">=22.11.0"
-  },
-  "scripts": {
-    "test": "node --test test/*.test.mjs test/**/*.test.mjs",
-    "example": "node bin/serve.mjs example -p 3000 -H"
   }
 }
