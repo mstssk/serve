@@ -1,0 +1,26 @@
+name: Package
+on:
+  push:
+    tags: ["v**"] # Dry-run when pushed tags.
+  release:
+    types: [published] # Publish when created releases.
+env:
+  DRY_RUN: "${{ ((github.event_name == 'release' && github.event.action == 'published') && ' ') || '--dry-run' }}"
+jobs:
+  release_npm:
+    name: "Publish to npmjs.com"
+    permissions:
+      id-token: write # Required for OIDC
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "lts/*"
+          registry-url: "https://registry.npmjs.org"
+          scope: "@mstssk"
+      - run: npm cit
+      - run: npx can-npm-publish --verbose
+      - name: Publish ${{ env.DRY_RUN }}
+        run: npm publish $DRY_RUN
