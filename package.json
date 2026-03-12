@@ -1,6 +1,6 @@
 {
   "name": "@mstssk/serve",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Minimal static file server for local development",
   "keywords": [
     "serve",
