@@ -2,6 +2,13 @@
   "name": "@mstssk/serve",
   "version": "0.0.1",
   "description": "Minimal static file server for local development",
+  "keywords": [
+    "serve",
+    "static",
+    "static-server",
+    "file-server",
+    "dev-server"
+  ],
   "license": "MIT",
   "type": "module",
   "bin": {
