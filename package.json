@@ -26,9 +26,6 @@
     "example": "node bin/serve.mjs example -p 3000 -H",
     "test": "node --test test/*.test.mjs test/**/*.test.mjs"
   },
-  "engines": {
-    "node": ">=22.11.0"
-  },
   "publishConfig": {
     "access": "public"
   }

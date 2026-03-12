@@ -8,7 +8,6 @@ Minimal static file server for local development.
 - Zero config
 - No dependencies
 - Plugin interface for extensibility
-- Requires Node.js >= 22.11.0
 
 ## Install
 
