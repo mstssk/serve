@@ -1,5 +1,8 @@
 # @mstssk/serve
 
+[![CI](https://github.com/mstssk/serve/actions/workflows/ci.yml/badge.svg)](https://github.com/mstssk/serve/actions/workflows/ci.yml)
+[![npm version](https://badge.fury.io/js/@mstssk%2Fserve.svg)](https://badge.fury.io/js/@mstssk%2Fserve)
+
 Minimal static file server for local development.
 
 - Zero config
