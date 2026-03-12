@@ -1,11 +1,12 @@
 name: Package
+run-name: "Package ${{ github.event_name == 'push' && '(dry-run)' || '' }}"
 on:
   push:
     tags: ["v**"] # Dry-run when pushed tags.
   release:
     types: [published] # Publish when created releases.
 env:
-  DRY_RUN: "${{ ((github.event_name == 'release' && github.event.action == 'published') && ' ') || '--dry-run' }}"
+  DRY_RUN: "${{ github.event_name == 'push' && '--dry-run' || '' }}"
 jobs:
   release_npm:
     name: "Publish to npmjs.com"
