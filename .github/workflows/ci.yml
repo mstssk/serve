@@ -3,9 +3,21 @@ name: CI
 on:
   push:
     branches:
-      - '**'
+      - "**"
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          cache: "npm"
+      - run: npm ci
+      - run: npm run lint
+      - run: npx oxfmt --check .
+
   test:
     runs-on: ubuntu-latest
     strategy:
@@ -16,5 +28,5 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: "npm"
       - run: npm cit

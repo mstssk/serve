@@ -26,7 +26,7 @@ serve ./dist -p 8080 -H      # with hot-reload
 ## Options
 
 | Option         | Short | Description                    | Default |
-|----------------|-------|--------------------------------|---------|
+| -------------- | ----- | ------------------------------ | ------- |
 | `--port`       | `-p`  | Port number                    | `3000`  |
 | `--hot-reload` | `-H`  | Reload browser on file changes | off     |
 | `--help`       | `-h`  | Show help message              |         |
@@ -35,28 +35,28 @@ serve ./dist -p 8080 -H      # with hot-reload
 
 `createAppServer` accepts a `plugins` array. Each plugin can implement:
 
-| Method | Description |
-|--------|-------------|
-| `setup({ server, root, port })` | Called once before the server starts listening. Can be async. |
-| `handleRequest(req, res)` | Handle a request. Return `true` if handled, `false` to fall through. |
-| `transformResponse(body, { mime, target })` | Transform response body, return new body |
+| Method                                      | Description                                                          |
+| ------------------------------------------- | -------------------------------------------------------------------- |
+| `setup({ server, root, port })`             | Called once before the server starts listening. Can be async.        |
+| `handleRequest(req, res)`                   | Handle a request. Return `true` if handled, `false` to fall through. |
+| `transformResponse(body, { mime, target })` | Transform response body, return new body                             |
 
 ### Example plugin
 
 ```js
-import { createAppServer } from '@mstssk/serve/lib/server.mjs';
+import { createAppServer } from "@mstssk/serve/lib/server.mjs";
 
 const logPlugin = {
   setup({ root }) {
     console.log(`serving ${root}`);
   },
   transformResponse(body, { mime }) {
-    if (mime !== 'text/html') return body;
-    return Buffer.from(body.toString() + '<!-- served by @mstssk/serve -->');
+    if (mime !== "text/html") return body;
+    return Buffer.from(body.toString() + "<!-- served by @mstssk/serve -->");
   },
 };
 
-createAppServer({ ROOT: './dist', PORT: 3000, plugins: [logPlugin] });
+createAppServer({ ROOT: "./dist", PORT: 3000, plugins: [logPlugin] });
 ```
 
 ## Security

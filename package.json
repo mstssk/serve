@@ -3,18 +3,17 @@
   "version": "0.0.4",
   "description": "Minimal static file server for local development",
   "keywords": [
+    "dev-server",
+    "file-server",
     "serve",
     "static",
-    "static-server",
-    "file-server",
-    "dev-server"
+    "static-server"
   ],
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/mstssk/serve.git"
   },
-  "license": "MIT",
-  "type": "module",
   "bin": {
     "serve": "bin/serve.mjs"
   },
@@ -22,11 +21,18 @@
     "bin",
     "lib"
   ],
-  "scripts": {
-    "example": "node bin/serve.mjs example -p 3000 -H",
-    "test": "node --test test/*.test.mjs test/**/*.test.mjs"
-  },
+  "type": "module",
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "example": "node bin/serve.mjs example -p 3000 -H",
+    "test": "node --test test/*.test.mjs test/**/*.test.mjs",
+    "lint": "oxlint .",
+    "fmt": "oxfmt --write ."
+  },
+  "devDependencies": {
+    "oxfmt": "^0.40.0",
+    "oxlint": "^1.55.0"
   }
 }
