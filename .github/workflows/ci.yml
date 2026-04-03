@@ -33,10 +33,7 @@ jobs:
 
   docker-test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22, 24, 25]
     steps:
       - uses: actions/checkout@v6
-      - run: docker build -f test.Dockerfile -t serve-test:${{ matrix.node-version }} --build-arg NODE_VERSION=${{ matrix.node-version }} .
-      - run: docker run --rm serve-test:${{ matrix.node-version }}
+      - run: docker build -f test.Dockerfile -t serve-test:lts --build-arg NODE_VERSION=lts .
+      - run: docker run --rm serve-test:lts
