@@ -29,9 +29,11 @@
     "example": "node bin/serve.mjs example -p 3000 -H",
     "test": "node --test test/*.test.mjs test/**/*.test.mjs",
     "lint": "oxlint .",
-    "fmt": "oxfmt --write ."
+    "fmt": "oxfmt --write .",
+    "prepare": "lefthook install"
   },
   "devDependencies": {
+    "lefthook": "^2.1.4",
     "oxfmt": "^0.40.0",
     "oxlint": "^1.55.0"
   }

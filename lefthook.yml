@@ -1,0 +1,9 @@
+pre-commit:
+  commands:
+    fmt:
+      glob: "**/*.{mjs,js,json,md,yml,yaml,html,css}"
+      run: oxfmt --write {staged_files}
+      stage_fixed: true
+    lint:
+      glob: "**/*.{mjs,js}"
+      run: oxlint {staged_files}
