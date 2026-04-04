@@ -25,11 +25,12 @@ serve ./dist -p 8080 -H      # with hot-reload
 
 ## Options
 
-| Option         | Short | Description                    | Default |
-| -------------- | ----- | ------------------------------ | ------- |
-| `--port`       | `-p`  | Port number                    | `3000`  |
-| `--hot-reload` | `-H`  | Reload browser on file changes | off     |
-| `--help`       | `-h`  | Show help message              |         |
+| Option             | Short | Description                                        | Default |
+| ------------------ | ----- | -------------------------------------------------- | ------- |
+| `--port`           | `-p`  | Port number                                        | `3000`  |
+| `--hot-reload`     | `-H`  | Reload browser on file changes                     | off     |
+| `--allow-dotfiles` |       | Serve dotfiles and node_modules (default: ignored) | off     |
+| `--help`           | `-h`  | Show help message                                  |         |
 
 ## Plugin interface
 
