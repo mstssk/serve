@@ -91,7 +91,12 @@ suite("ignoreDotfilesAndModules=false", () => {
   const BASE2 = `http://localhost:${PORT2}`;
 
   before(async () => {
-    ({ server: s } = await createAppServer({ ROOT: root, PORT: PORT2, plugins: [], ignoreDotfilesAndModules: false }));
+    ({ server: s } = await createAppServer({
+      ROOT: root,
+      PORT: PORT2,
+      plugins: [],
+      ignoreDotfilesAndModules: false,
+    }));
     await new Promise((resolve) => s.once("listening", resolve));
   });
 
