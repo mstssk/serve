@@ -11,4 +11,5 @@ COPY package*.json ./
 COPY bin/ ./bin/
 COPY lib/ ./lib/
 COPY test/ ./test/
-CMD ["npm", "cit"]
+RUN npm ci --ignore-scripts
+CMD ["npm", "test"]
