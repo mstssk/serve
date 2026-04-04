@@ -1,4 +1,4 @@
-import { test, before, after } from "node:test";
+import { test, before, after, suite } from "node:test";
 import assert from "node:assert/strict";
 import { mkdtemp, writeFile, mkdir, symlink } from "node:fs/promises";
 import { join } from "node:path";
@@ -17,6 +17,11 @@ before(async () => {
   await mkdir(join(root, "sub"));
   await writeFile(join(root, "sub", "index.html"), "<html><body>sub</body></html>");
   await symlink("/etc/passwd", join(root, "link"));
+  await writeFile(join(root, ".env"), "SECRET=1");
+  await mkdir(join(root, "node_modules"));
+  await writeFile(join(root, "node_modules", "pkg.js"), "module.exports = {}");
+  await mkdir(join(root, ".git"));
+  await writeFile(join(root, ".git", "config"), "[core]");
 
   ({ server } = await createAppServer({ ROOT: root, PORT, plugins: [] }));
   await new Promise((resolve) => server.once("listening", resolve));
@@ -63,4 +68,45 @@ test("blocks path traversal", async () => {
 test("blocks symbolic links", async () => {
   const res = await fetch(`${BASE}/link`);
   assert.equal(res.status, 403);
+});
+
+test("blocks dotfiles by default", async () => {
+  const res = await fetch(`${BASE}/.env`);
+  assert.equal(res.status, 404);
+});
+
+test("blocks node_modules by default", async () => {
+  const res = await fetch(`${BASE}/node_modules/pkg.js`);
+  assert.equal(res.status, 404);
+});
+
+test("blocks nested dotfiles by default", async () => {
+  const res = await fetch(`${BASE}/.git/config`);
+  assert.equal(res.status, 404);
+});
+
+suite("ignoreDotfilesAndModules=false", () => {
+  let s;
+  const PORT2 = 3335;
+  const BASE2 = `http://localhost:${PORT2}`;
+
+  before(async () => {
+    ({ server: s } = await createAppServer({ ROOT: root, PORT: PORT2, plugins: [], ignoreDotfilesAndModules: false }));
+    await new Promise((resolve) => s.once("listening", resolve));
+  });
+
+  after(async () => {
+    s.closeAllConnections();
+    await new Promise((resolve) => s.close(resolve));
+  });
+
+  test("serves dotfiles when ignoreDotfilesAndModules=false", async () => {
+    const res = await fetch(`${BASE2}/.env`);
+    assert.equal(res.status, 200);
+  });
+
+  test("serves node_modules when ignoreDotfilesAndModules=false", async () => {
+    const res = await fetch(`${BASE2}/node_modules/pkg.js`);
+    assert.equal(res.status, 200);
+  });
 });

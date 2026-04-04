@@ -12,6 +12,7 @@ Arguments:
 Options:
   -p, --port        Port number (default: 3000)
   -H, --hot-reload  Reload browser on file changes
+  --allow-dotfiles  Serve dotfiles and node_modules (default: ignored)
   -h, --help        Show this help message
 `.trim();
 
@@ -21,6 +22,7 @@ try {
     options: {
       port: { type: "string", short: "p", default: "3000" },
       "hot-reload": { type: "boolean", short: "H", default: false },
+      "allow-dotfiles": { type: "boolean", default: false },
       help: { type: "boolean", short: "h", default: false },
     },
     allowPositionals: true,
@@ -52,5 +54,6 @@ if (isNaN(PORT) || PORT < 1 || PORT > 65535) {
 }
 
 const plugins = values["hot-reload"] ? [hotReloadPlugin] : [];
+const ignoreDotfilesAndModules = !values["allow-dotfiles"];
 
-createAppServer({ ROOT, PORT, plugins });
+createAppServer({ ROOT, PORT, plugins, ignoreDotfilesAndModules });
